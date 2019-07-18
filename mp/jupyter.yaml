@@ -32,6 +32,6 @@ taskRoles:
       memoryMB: <% $parameters.memoryMB %>
       gpu: <% $parameters.gpu %>
     commands:
-      - jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port $((10$(date +%Y%m%d%H%M%S)%55535+10000))
+      - jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port 8888
 
 
