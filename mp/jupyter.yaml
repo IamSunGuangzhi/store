@@ -6,7 +6,7 @@ contributor: OpenPAI
 description: |
   # jupyter Example
 
-!!int 
+
 parameters:
   cpunumber: 1
   memoryMB: 1024
@@ -29,9 +29,9 @@ taskRoles:
       minSucceededInstances: 1
     dockerImage: di_jupyter
     resourcePerInstance:
-      cpu: <% $parameters.cpunumber %>
-      memoryMB: <% $parameters.memoryMB %>
-      gpu: <% $parameters.gpu %>
+      cpu: !!int <% $parameters.cpunumber %>
+      memoryMB: !!int <% $parameters.memoryMB %>
+      gpu: !!int <% $parameters.gpu %>
     commands:
       - jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port $((10$(date +%Y%m%d%H%M%S)%55535+10000))
 
