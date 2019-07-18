@@ -6,6 +6,7 @@ contributor: OpenPAI
 description: |
   # jupyter Example
 
+!!int 
 parameters:
   cpunumber: 1
   memoryMB: 1024
