@@ -7,10 +7,10 @@ description: |
   # jupyter Example
 
 
-parameters:
-  cpunumber: !!int 1
-  memoryMB: !!int 1024
-  gpu: !!int 1
+#parameters:
+#  cpunumber: !!int 1
+#  memoryMB: !!int 1024
+#  gpu: !!int 1
 
 prerequisites:
   - protocolVersion: 2
@@ -29,9 +29,9 @@ taskRoles:
       minSucceededInstances: 1
     dockerImage: di_jupyter
     resourcePerInstance:
-      cpu: <% $parameters.cpunumber %>
-      memoryMB: <% $parameters.memoryMB %>
-      gpu: <% $parameters.gpu %>
+      cpu: 4 #<% $parameters.cpunumber %>
+      memoryMB: 16384 #<% $parameters.memoryMB %>
+      gpu: 1 #<% $parameters.gpu %>
     commands:
       - jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port $((10$(date +%Y%m%d%H%M%S)%55535+10000))
 
