@@ -1,0 +1,38 @@
+protocolVersion: 2
+name: jupyter
+type: job
+version: 1.0
+contributor: OpenPAI
+description: |
+  # jupyter Example
+
+
+#parameters:
+#  cpunumber: !!int 1
+#  memoryMB: !!int 1024
+#  gpu: !!int 1
+
+prerequisites:
+  - protocolVersion: 2
+    name: di_jupyter
+    type: dockerimage
+    version: 1.0
+    contributor : OpenPAI
+    description: |
+      This is an jupyter Docker image on harboe.shannonai.com.
+    uri : harbor.shannonai.com/shannon-train/train:v0.0.2
+
+taskRoles:
+  train:
+    instances: 1
+    completion:
+      minSucceededInstances: 1
+    dockerImage: di_jupyter
+    resourcePerInstance:
+      cpu: 4 #<% $parameters.cpunumber %>
+      memoryMB: 16384 #<% $parameters.memoryMB %>
+      gpu: 1 #<% $parameters.gpu %>
+    commands:
+      - jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port $((10$(date +%Y%m%d%H%M%S)%55535+10000))
+
+
